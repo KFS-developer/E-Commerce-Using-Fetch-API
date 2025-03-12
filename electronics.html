@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style=" background-color: gainsboro;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">E-Commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="men-cloth.html">Men's Clothing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="women-cloth.html">Women's Clothing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="electronics.html">Electronics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="jewelery.html">Jewelery</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="text-center mt-5">Electronics</h1>
+
+    <div class="container my-5 items text-center" style="display: grid; grid-template-columns: repeat(3,1fr); gap: 5px">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function Get_Data_From_Server() {
+            fetch("https://fakestoreapi.com/products")
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                    Cardlist(data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+        Get_Data_From_Server();
+
+        function CreateDiv(image, title, price, category, description, rate, count) {
+            let div = `
+                <div class="p-3" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background: white; height: 800px;">
+                    <img src=${image} class="w-100 h-50 mt-2 mb-4" alt="${title}">
+                    <h4>${title}</h4>
+                    <p><strong>Price:</strong> $${price}</p>
+                    <p><strong>Category:</strong> ${category}</p>
+                    <p>${description.substring(0, 150)}...</p>
+                    <p><strong>Rating:</strong> ⭐${rate} (${count} reviews)</p>
+                </div>
+                `;
+            return div;
+        }
+
+        function Cardlist(data) {
+            const cardData = data.filter(item => item.category === "electronics").map((el) => CreateDiv(el.image, el.title, el.price, el.category, el.description, el.rating.rate, el.rating.count));
+            document.querySelector(".items").innerHTML = cardData.join("");
+        }
+
+    </script>
+</body>
+
+</html>
