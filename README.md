@@ -17,7 +17,7 @@ This is a simple e-commerce website built using **HTML, CSS, JavaScript, and Boo
 ## Setup Instructions:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/ecommerce-website.git
+   git clone https://github.com/KFS-developer/E-Commerce-Using-Fetch-API.git
    ```
 2. Open `index.html` in a browser.
 3. Ensure you have an active internet connection for API fetching.
