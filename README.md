@@ -24,3 +24,6 @@ This is a simple e-commerce website built using **HTML, CSS, JavaScript, and Boo
 
 ## API Integration:
 The website fetches product details dynamically using JavaScript's `fetch()` method from a public e-commerce API.
+
+## Live Demo:
+https://e-commerce-using-fetch-api.vercel.app/
